@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  frontend:
+
+
+  
+  db:
+    build: ./db
+    ports:
+      - "5432:5432"
+
+  db-seed:
+    build: ./seed
+    depends_on:
+      - db
+
+  backend:
