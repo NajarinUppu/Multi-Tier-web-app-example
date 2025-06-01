@@ -1,18 +1,37 @@
 version: '3.8'
 
 services:
-  frontend:
-
-
-  
   db:
     build: ./db
     ports:
       - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
 
-  db-seed:
-    build: ./seed
+  api:
+    build: ./api
+    ports:
+      - "5000:5000"
     depends_on:
       - db
+    environment:
+      - DB_HOST=mydb
+      - DB_USER=naj
+      - DB_PASSWORD=postgres
 
-  backend:
+  web:
+    build: ./web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      - API_URL=http://api:5000
+      - NODE_ENV=production
+
+volumes:
+  db-data:
