@@ -33,7 +33,7 @@ sometimes its better to keep things simple and here we have a three-tier web app
 
 ### Garden Providers
 
-The `main` branch uses the `local-kubernetes` provider. The [tutorial from our documentation](https://docs.garden.io/tutorials/your-first-project) however goes into more detail and discusses the different options for deploying the project to Kubernetes.
+The `main` branch uses the `Docker-compose` provider. The [tutorial from our documentation](https://docs.garden.io/tutorials/your-first-project) however goes into more detail and discusses the different options for deploying the project to Kubernetes.
 
 ### Garden Actions
 
@@ -46,6 +46,6 @@ The project is a voting application with the following components:
 These services are built, deployed, and tested with [Garden actions](https://docs.garden.io/overview/core-concepts#action).
 
 Specifically, the `api` and `web` components have their own Kubernetes manifests so we use the `container` Build action to build them
-and the `kubernetes` Deploy action to deploy them.
+and the `Docker-compose` Deploy action to deploy them.
 
 The `db` component is an "off the shelf" Postgres Helm chart that's deployed via the `helm` Deploy action.
